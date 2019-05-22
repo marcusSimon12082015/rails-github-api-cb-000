@@ -4,6 +4,7 @@
   <h2><%=@username %></h2>
   <ul>
     <% @bodyRepos.each do |repo| %>
+      <% binding.pry %>
       <li><%=repo[:name]%> - <%=repo[:html_url] %></li>
     <% end %>
   </ul>
