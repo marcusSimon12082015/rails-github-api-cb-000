@@ -10,6 +10,7 @@ class RepositoriesController < ApplicationController
     end
 
     body = JSON.parse(resp.body)
+    @bodyRepos = JSON.parse(responseRepos.body)
     @username = body["login"]
   end
 
