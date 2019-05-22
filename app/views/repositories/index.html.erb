@@ -3,7 +3,7 @@
   <!-- List repositories and display username here! -->
   <h2><%=@username %></h2>
   <ul>
-    <% @bodyRepos.each do |repo| %> 
+    <% @bodyRepos.each do |repo| %>
       <li><%=repo.name%> - <%=repo.html_url %></li>
     <% end %>
   </ul>
