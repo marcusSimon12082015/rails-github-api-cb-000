@@ -4,7 +4,7 @@
   <h2><%=@username %></h2>
   <ul>
     <% @bodyRepos.each do |repo| %>
-      <li><%=repo.name%> - <%=repo.html_url %></li>
+      <li><%=repo[:name]%> - <%=repo[:html_url] %></li>
     <% end %>
   </ul>
   <%= form_tag("/repositories/create", method: "post") do %>
