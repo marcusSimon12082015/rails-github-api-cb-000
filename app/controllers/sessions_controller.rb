@@ -2,14 +2,16 @@ class SessionsController < ApplicationController
   skip_before_action :authenticate_user
 
   def create
-    resp = Faraday.get("https://github.com/login/oauth/access_token") do |req|
-      req.params['client_id'] = ENV['GITHUB_CLIENT_ID']
-      req.params['client_secret'] = ENV['GITHUB_CLIENT_SECRET']
-      req.params['code'] = params[:code]
+    client_id = ENV["GITHUB_CLIENT_ID"]
+    client_secret = ENV["GITHUB_CLIENT_SECRET"]
+    
+    response = Faraday.post "https://github.com/login/oauth/access_token" do |req|
+      req.body = { 'client_id': client_id, 'client_secret': client_secret, 'code': code }
       req.headers['Accept'] = 'application/json'
     end
+    
     binding.pry
-    body = JSON.parse(resp.body)
+    body = JSON.parse(response.body)
     session[:token] = body["access_token"]
     redirect_to root_path
   end
